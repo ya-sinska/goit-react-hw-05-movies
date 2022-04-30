@@ -1,13 +1,21 @@
-import { Outlet, Link } from "react-router-dom"
 
+import { useFetchMovie } from "hooks/useFetchMovie";
+import { Loader } from "components/Loader/Loader";
+import { Movie } from "components/Movie/Movie";
+import { useParams } from "react-router-dom";
 export const MovieDetailsPage = () => {
+    const {movieId} =useParams()
+    const { movie } = useFetchMovie(movieId);
+    const { status } = useFetchMovie(movieId);
+   
     return (
-        <div>
-            <h1>Bce про фільм</h1>
-            <Link to={"cast"}>Actors</Link>
-            <Link to={"reviews"}>reviews</Link>
-            <Outlet/>
-        </div>
+     <>
+        {status === 'pending' && <Loader />}
+        {status === 'resolved' && <Movie movie={movie} />}
+        {status === 'rejected' && <h2>Sorry can't find this page</h2>}
+    </>  
+    
+
 
     )
 }

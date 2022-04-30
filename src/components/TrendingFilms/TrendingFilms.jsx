@@ -1,15 +1,20 @@
 
-import { Container, List } from "./TrendingFilms.styled";
+import { Container,List, Title, Poster, Item, Links, MoviesTitle } from "./TrendingFilms.styled";
+const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
 export const TrendingFilms = ({ movies, title }) => {
     return (
         <Container >
-            <h2>{title}</h2>
-            <ul>
-                {movies.map(movie => <li key={movie.id}>
-                    <img src={movie} alt="" />
-                    <List to={`movies/${movie.id}`}>{movie.title}</List>
-                </li> )}
-            </ul>
+            <Title>{title}</Title>
+            <List>
+                {movies.map(movie => <Item key={movie.id}>
+                    <Links to={`movies/${movie.id}`}>
+                        <Poster>
+                        <img src={`${imgBaseUrl}${movie.poster_path}`} alt={movie.title} /> 
+                        </Poster>
+                        <MoviesTitle>{movie.title}</MoviesTitle>
+                    </Links>
+                </Item> )}
+            </List>
             
         </Container >
     )

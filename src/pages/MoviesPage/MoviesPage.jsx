@@ -1,6 +1,12 @@
-import { Link } from "react-router-dom"
+import { Searchbar } from "components/SearchBar/SearchBar"
+import { MovieQueryList } from "components/MovieQueryList/MovieQueryList"
 export const MoviesPage = () => {
     return (
-        <Link to={':movieId'}>search films</Link >
+        <>
+            <Searchbar />
+            <MovieQueryList/>
+            
+        </>
+        
     )
 }

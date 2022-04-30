@@ -23,7 +23,7 @@ export const useFetchMovie = (id) => {
             }
         }
         fetch();
-    }, []);
+    }, [id]);
 
     return { movie, status };
 };

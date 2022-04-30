@@ -36,9 +36,8 @@ box-shadow: 0px 0px 23px 0px #FFA322;
 }
 `
 export const Item = styled.li`
- display: flex;
- flex-direction: column;
- 
+display: flex;
+flex-direction: column;
 font-size:35px;
 font-family: 'Dancing Script', cursive;
 font-weight:400;

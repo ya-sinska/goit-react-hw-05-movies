@@ -1,10 +1,13 @@
 import { Searchbar } from "components/SearchBar/SearchBar"
-import { MovieQueryList } from "components/MovieQueryList/MovieQueryList"
+import { useParams } from "react-router-dom"
+import { Outlet } from "react-router-dom"
 export const MoviesPage = () => {
+    const {movieId} = useParams();
+    
     return (
         <>
-            <Searchbar />
-            <MovieQueryList/>
+            {!movieId && <Searchbar />}
+            <Outlet/>
             
         </>
         

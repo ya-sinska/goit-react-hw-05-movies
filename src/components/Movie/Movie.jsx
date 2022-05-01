@@ -1,14 +1,23 @@
-import { Outlet, Link} from "react-router-dom"
-import { FilmContainer,GoBack , FilmDescription, Poster, Title,SubTitle, Text,GenresList, AdittionalInfo ,Detail } from "./Movie.styled";
-
+import { useState, useEffect } from "react";
+import { FilmContainer,GoBack,Btn, FilmDescription, Poster, Title,SubTitle, Text,GenresList} from "./Movie.styled";
+import { useNavigate } from "react-router-dom";
 const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
-export const Movie = ({ movie }) => {
+export const Movie = ({ movie, location }) => {
     const { title, poster_path, genres, overview, vote_average} = movie;
+    const [movieLocation, setMovieLocation] = useState({});
+    const navigate = useNavigate();
     
-    
+    const onBackHandle = () => {
+    navigate(movieLocation)
+    }
+
+    useEffect(() => {
+    if(location.state) setMovieLocation(location.state.from)
+    }, [location.state])
+
     return (
         <div>
-            <Link to={``}><GoBack  /></Link>
+            <Btn type='button'onClick={onBackHandle} ><GoBack  /></Btn>
             <FilmContainer >
                 <Poster  src={`${imgBaseUrl}${poster_path}`} alt={title} /> 
                     <FilmDescription>
@@ -20,12 +29,6 @@ export const Movie = ({ movie }) => {
                         {genres && genres.map(genre => <GenresList key={genre.id}>{genre.name}</GenresList>)}
                     </FilmDescription>
             </FilmContainer >
-            <AdittionalInfo>
-                <Title>Adittional information</Title>
-                <Detail to={"cast"}>Actors</Detail>
-                <Detail to={"reviews"}>Reviews</Detail>
-                <Outlet/>
-            </AdittionalInfo>
         </div>
     )
 }

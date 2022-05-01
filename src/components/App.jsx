@@ -5,17 +5,17 @@ import { MoviesPage } from '../pages/MoviesPage/MoviesPage';
 import { MovieDetailsPage } from '../pages/MovieDetailsPage/MovieDetailsPage';
 import { Cast } from 'pages/Cast/Cast';
 import { Reviews } from 'pages/Reviews/Reviews';
-// import { ToastContainer} from 'react-toastify';
+
 export const App = () => {
   return (
     <Routes>
-      {/* <ToastContainer/> */}
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage/>} />
-        <Route path="movies" element={<MoviesPage />}/>
-        <Route path='movies/:movieId' element={<MovieDetailsPage />}>
-          <Route path='cast' element={<Cast/>} />
-          <Route path='reviews' element={<Reviews/> }/>
+        <Route path="movies" element={<MoviesPage />}>
+          <Route path=':movieId' element={<MovieDetailsPage />}>
+            <Route path='cast' element={<Cast/>} />
+            <Route path='reviews' element={<Reviews />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

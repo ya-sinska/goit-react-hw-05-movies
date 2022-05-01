@@ -1,16 +1,12 @@
-import { Searchbar } from "components/SearchBar/SearchBar"
-import { useParams, Outlet  } from "react-router-dom"
-import { useState, useEffect} from "react"
+import { useState, useEffect } from "react"
 import { fetchMoviesByQuery } from "servises/moviesApi"
-import { TrendingFilms } from "components/TrendingFilms/TrendingFilms"
 const Status = {
   IDLE: 'idle',
   PENDING: 'pending',
   RESOLVED: 'resolved',
   REJECTED: 'rejected',
 };
-export const MoviesPage = () => {
-    const [query, setQuery] = useState(null);
+export const useFetchMoviesByQuery = (query) => {
     const [movies, setMovies] = useState([])
     const [status, setStatus] = useState('');
     useEffect(() => {
@@ -31,25 +27,6 @@ export const MoviesPage = () => {
         }
         fetch();
     }, [query]);
-    const { movieId } = useParams();
-    const onInputChange = (value) => {
-        setQuery(value);
-    }
 
-    return (
-        <>
-            {!movieId &&
-                <>
-                <Searchbar onSubmit={onInputChange} />
-                {movies &&<TrendingFilms movies={movies} />}
-                </>
-
-                
-                
-            }
-            <Outlet/>
-            
-        </>
-        
-    )
-}
+    return { movies, status };
+};

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { FilmContainer,GoBack,Btn, FilmDescription, Poster, Title,SubTitle, Text,GenresList} from "./Movie.styled";
 import { useNavigate } from "react-router-dom";
+import image from "../../Images/noPoster.jpg"
 const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
 export const Movie = ({ movie, location }) => {
     const { title, poster_path, genres, overview, vote_average} = movie;
@@ -19,7 +20,7 @@ export const Movie = ({ movie, location }) => {
         <div>
             <Btn type='button'onClick={onBackHandle} ><GoBack  /></Btn>
             <FilmContainer >
-                <Poster  src={`${imgBaseUrl}${poster_path}`} alt={title} /> 
+               {poster_path? (<Poster  src={`${imgBaseUrl}${poster_path}`} alt={title} />):(<Poster src={`${image}`} alt='no poster'/>) }
                     <FilmDescription>
                         <Title>{title}</Title>
                         <Text>User score: <b>{vote_average}</b></Text>

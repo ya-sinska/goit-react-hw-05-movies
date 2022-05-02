@@ -1,51 +1,21 @@
 import { Searchbar } from "components/SearchBar/SearchBar"
-import { useParams, Outlet  } from "react-router-dom"
-import { useState, useEffect} from "react"
-import { fetchMoviesByQuery } from "servises/moviesApi"
-import { TrendingFilms } from "components/TrendingFilms/TrendingFilms"
-const Status = {
-  IDLE: 'idle',
-  PENDING: 'pending',
-  RESOLVED: 'resolved',
-  REJECTED: 'rejected',
-};
+import { useParams, Outlet, useLocation  } from "react-router-dom"
+import { TrendingFilms } from "components/TrendingFilms/FilmsList"
+import { useFetchMoviesByQuery } from "hooks/useFetchMoviesByQuery"
+import { Loader } from "components/Loader/Loader";
 export const MoviesPage = () => {
-    const [query, setQuery] = useState(null);
-    const [movies, setMovies] = useState([])
-    const [status, setStatus] = useState('');
-    useEffect(() => {
-        if (!query) {
-            return
-        }
-        setStatus(Status.PENDING);
-        async function fetch() {
-            try {
-                const movies = await fetchMoviesByQuery(query);
-                setMovies(movies);
-                setStatus(Status.RESOLVED);
-            }
-            catch (error) {
-                setStatus(Status.REJECTED);
-                console.log(error.message);
-            }
-        }
-        fetch();
-    }, [query]);
+    const { movies, status, onInputChange} = useFetchMoviesByQuery();
     const { movieId } = useParams();
-    const onInputChange = (value) => {
-        setQuery(value);
-    }
-
+    const location = useLocation();
     return (
         <>
             {!movieId &&
                 <>
                 <Searchbar onSubmit={onInputChange} />
-                {movies &&<TrendingFilms movies={movies} />}
-                </>
-
-                
-                
+                {status === 'pending' && <Loader />}
+                {status === 'resolved' && <TrendingFilms movies={movies} location={location} to={ ''}/>}
+                {status === 'rejected' && <h2>Sorry can't find this film</h2>}
+                </>  
             }
             <Outlet/>
             

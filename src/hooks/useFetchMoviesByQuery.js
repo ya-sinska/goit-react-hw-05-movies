@@ -1,25 +1,31 @@
 import { useState, useEffect } from "react"
 import { fetchMoviesByQuery } from "servises/moviesApi"
+
 const Status = {
   IDLE: 'idle',
   PENDING: 'pending',
   RESOLVED: 'resolved',
   REJECTED: 'rejected',
 };
-export const useFetchMoviesByQuery = (query) => {
+export const useFetchMoviesByQuery = () => {
+    const [query, setQuery] = useState(null);
     const [movies, setMovies] = useState([])
     const [status, setStatus] = useState('');
     useEffect(() => {
         if (!query) {
             return
         }
-        setStatus(Status.PENDING);
         async function fetch() {
-            try {
+        try {
+                setStatus(Status.PENDING);
                 const movies = await fetchMoviesByQuery(query);
+            if (movies.length > 0) {
                 setMovies(movies);
                 setStatus(Status.RESOLVED);
             }
+            else {
+            setStatus(Status.REJECTED);
+        }}
             catch (error) {
                 setStatus(Status.REJECTED);
                 console.log(error.message);
@@ -27,6 +33,8 @@ export const useFetchMoviesByQuery = (query) => {
         }
         fetch();
     }, [query]);
-
-    return { movies, status };
+    const onInputChange = (value) => {
+        setQuery(value);
+    }
+    return { movies, status, onInputChange};
 };

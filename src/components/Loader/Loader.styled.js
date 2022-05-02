@@ -3,8 +3,7 @@ import styled from "@emotion/styled";
 export const Image = styled.div`
 display:flex;
 justify-content:center;
-width: 100vw;
-height:100vh;
+text-align:center;
 &:after {
   content: " ";
   display: block;

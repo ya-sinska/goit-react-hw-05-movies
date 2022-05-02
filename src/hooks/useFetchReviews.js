@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { fetchReviewsById} from "servises/moviesApi"
-
+import { notifi } from "servises/notify";
 export const useFetchReviews = (id) => {
     const [reviews, setReviews] = useState([]);  
     useEffect(() => {  
@@ -11,6 +11,7 @@ export const useFetchReviews = (id) => {
             }
             catch (error) {
                 console.log(error.message);
+                notifi(error.message);
             }
         }
         fetch();

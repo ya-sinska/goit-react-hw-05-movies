@@ -24,9 +24,3 @@ margin-bottom:10px;
 export const Icon  = styled(AiOutlineUser)`
 margin-right:10px;
 `
-export const NoReviev  = styled.p`
-font-size:18px;
-font-weight:600;
-margin-bottom:10px;
-color: #ca7628;
-`

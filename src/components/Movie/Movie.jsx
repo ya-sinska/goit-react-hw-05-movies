@@ -14,9 +14,9 @@ export const Movie = ({ movie, onBackClick }) => {
                         <Title>{title}</Title>
                         <Text>User score: <b>{vote_average}</b></Text>
                         <SubTitle>Overview</SubTitle>
-                        <Text>{overview }</Text>
+                        {overview!==''?(<Text>{overview}</Text>):(<Text>No overview</Text>)}
                         <SubTitle>Genres</SubTitle>
-                        {genres && genres.map(genre => <GenresList key={genre.id}>{genre.name}</GenresList>)}
+                    {genres ? (genres.map(genre => <GenresList key={genre.id}>{genre.name}</GenresList>)) : (<Text>No genre</Text>)}
                     </FilmDescription>
             </FilmContainer >
         </div>

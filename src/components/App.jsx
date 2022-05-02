@@ -1,4 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { HomePage } from '../pages/HomePage/HomePage';
 import { Layout } from './Layout/Layout';
 import { MoviesPage } from '../pages/MoviesPage/MoviesPage';
@@ -8,6 +10,8 @@ import { Reviews } from 'pages/Reviews/Reviews';
 
 export const App = () => {
   return (
+    <>
+    <ToastContainer />
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage/>} />
@@ -19,6 +23,8 @@ export const App = () => {
         </Route>
       </Route>
     </Routes>
+    </>
+
    
   );
 };

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { fetchMoviesByQuery } from "servises/moviesApi"
 import { useSearchParams } from "react-router-dom";
+import { notifi } from "servises/notify";
 const Status = {
   IDLE: 'idle',
   PENDING: 'pending',
@@ -25,11 +26,13 @@ export const useFetchMoviesByQuery = () => {
                 setStatus(Status.RESOLVED);
             }
             else {
-            setStatus(Status.REJECTED);
+                setStatus(Status.REJECTED);
+                notifi(`Movies ${query} didn't find`);
         }}
             catch (error) {
                 setStatus(Status.REJECTED);
                 console.log(error.message);
+                notifi(error.message);
             }
         }
         fetch();

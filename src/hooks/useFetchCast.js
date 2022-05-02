@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { fetchCastsById } from "servises/moviesApi"
+import { notifi } from "servises/notify";
 
 export const useFetchCast = (id) => {
     const [cast, setCast] = useState(null)
@@ -11,6 +12,7 @@ export const useFetchCast = (id) => {
             }
             catch (error) {
                 console.log(error.message);
+                notifi(error.message);
             }
         }
         fetch();

@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { TrendingFilms } from "components/TrendingFilms/FilmsList"
 import { useFetchMovies } from "hooks/useFetchMovies";
 import { Loader } from "components/Loader/Loader";
+import { NoFetchResults } from "components/NoFetchResults/NoFetchResults";
 export const HomePage = () => {
     const { movies } = useFetchMovies();
     const { status } = useFetchMovies();
@@ -10,7 +11,7 @@ export const HomePage = () => {
     return (<>
         {status === 'pending' && <Loader />}
         {status === 'resolved' && <TrendingFilms location={location} movies={movies} title='Trendind today' to='movies/'/>}
-        {status === 'rejected' && <h2>Sorry can't find this page</h2>}
+        {status === 'rejected' && <NoFetchResults text={"Sorry can't find this page:("}/>}
         </>  
     );
 }

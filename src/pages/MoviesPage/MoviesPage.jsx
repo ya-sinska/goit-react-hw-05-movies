@@ -3,6 +3,7 @@ import { useParams, Outlet, useLocation} from "react-router-dom"
 import { TrendingFilms } from "components/TrendingFilms/FilmsList"
 import { useFetchMoviesByQuery } from "hooks/useFetchMoviesByQuery"
 import { Loader } from "components/Loader/Loader";
+import { NoFetchResults } from "components/NoFetchResults/NoFetchResults";
 export const MoviesPage = () => {
     const { movies, status, onInputChange} = useFetchMoviesByQuery();
     const { movieId } = useParams();
@@ -14,7 +15,7 @@ export const MoviesPage = () => {
                 <Searchbar onSubmit={onInputChange} />
                 {status === 'pending' && <Loader />}
                 {status === 'resolved' && <TrendingFilms movies={movies} location={location} to={''}/>}
-                {status === 'rejected' && <h2>Sorry can't find this film</h2>}
+                {status === 'rejected' && <NoFetchResults text={"Sorry can't find this page:("}/>}
                 </>  
             }
             <Outlet/>

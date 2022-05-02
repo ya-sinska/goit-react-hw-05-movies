@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { fetchMovies } from "servises/moviesApi"
+import { notifi } from "servises/notify";
 const Status = {
   IDLE: 'idle',
   PENDING: 'pending',
@@ -20,6 +21,7 @@ export const useFetchMovies = () => {
             catch (error) {
                 setStatus(Status.REJECTED);
                 console.log(error.message);
+                notifi(error.message);
             }
         }
         fetch();

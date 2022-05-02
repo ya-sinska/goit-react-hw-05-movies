@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { fetchMoviesByQuery } from "servises/moviesApi"
-
+import { useSearchParams } from "react-router-dom";
 const Status = {
   IDLE: 'idle',
   PENDING: 'pending',
@@ -8,11 +8,12 @@ const Status = {
   REJECTED: 'rejected',
 };
 export const useFetchMoviesByQuery = () => {
-    const [query, setQuery] = useState(null);
     const [movies, setMovies] = useState([])
     const [status, setStatus] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams({});
+    const query = searchParams.get('query')??''
     useEffect(() => {
-        if (!query) {
+        if (query==='') {
             return
         }
         async function fetch() {
@@ -34,7 +35,13 @@ export const useFetchMoviesByQuery = () => {
         fetch();
     }, [query]);
     const onInputChange = (value) => {
-        setQuery(value);
+        let query = value;
+            if (query) {
+              setSearchParams({ query });
+            } else {
+              setSearchParams({});
+            }
+        
     }
     return { movies, status, onInputChange};
 };

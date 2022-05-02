@@ -45,6 +45,7 @@ list-style:none;
 `
 export const Poster = styled.div`
 width: 300px;
+height: 450px;
 margin-bottom:10px;
 padding-top: 10px;
 `

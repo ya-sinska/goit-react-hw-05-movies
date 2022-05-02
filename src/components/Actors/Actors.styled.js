@@ -13,6 +13,9 @@ font-family: 'Work Sans', sans-serif;
 font-weight:400;
 color: #ca7628;
 `
+export const Image = styled.img`
+height:250px;
+`
 export const Name = styled.p`
 font-weight:900;
 margin:5px 0; 

@@ -12,12 +12,12 @@ color: #fc7b03;
 `
 export const FilmContainer = styled.div`
 display:flex;
-justify-content: space-between;
 `
 export const FilmDescription = styled.div`
 margin-left:30px;
 padding: 15px;
 box-shadow: 0px 0px 17px 0px rgba(255,185,43,0.66);
+width: 85vw;
 `
 export const Poster = styled.img`
 width: 18vw;
@@ -43,6 +43,7 @@ font-family: 'Work Sans', sans-serif;
 font-weight:400;
 color: #ca7628;
 font-weight: 700;
+width: 50vw;
 `
 export const GenresList = styled.span`
 display: block;

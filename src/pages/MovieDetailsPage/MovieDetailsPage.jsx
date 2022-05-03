@@ -6,7 +6,7 @@ import { Loader } from "components/Loader/Loader";
 import { Movie } from "components/Movie/Movie";
 import { useParams, useNavigate } from "react-router-dom";
 import { AdittionalInfo } from "components/AdittionalInfo/AdittionalInfo";
-export const MovieDetailsPage = () => {
+export default function MovieDetailsPage () {
     const [movieLocation, setMovieLocation] = useState({});
     const {movieId} =useParams()
     const { movie, status } = useFetchMovie(movieId);

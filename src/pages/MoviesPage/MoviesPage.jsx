@@ -4,7 +4,7 @@ import { TrendingFilms } from "components/TrendingFilms/FilmsList"
 import { useFetchMoviesByQuery } from "hooks/useFetchMoviesByQuery"
 import { Loader } from "components/Loader/Loader";
 import { NoFetchResults } from "components/NoFetchResults/NoFetchResults";
-export const MoviesPage = () => {
+export default function MoviesPage () {
     const { movies, status, onInputChange} = useFetchMoviesByQuery();
     const { movieId } = useParams();
     const location = useLocation();

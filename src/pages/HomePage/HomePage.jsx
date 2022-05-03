@@ -3,7 +3,7 @@ import { TrendingFilms } from "components/TrendingFilms/FilmsList"
 import { useFetchMovies } from "hooks/useFetchMovies";
 import { Loader } from "components/Loader/Loader";
 import { NoFetchResults } from "components/NoFetchResults/NoFetchResults";
-export const HomePage = () => {
+export default function HomePage () {
     const { movies, status } = useFetchMovies();
     const location = useLocation();
    

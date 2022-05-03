@@ -24,6 +24,6 @@ export const TrendingFilms = ({ movies, title, location, to }) => {
 TrendingFilms.propTypes = {
     movies: PropTypes.array.isRequired,
     title: PropTypes.string,
-    location:PropTypes.string.isRequired,
+    location:PropTypes.object.isRequired,
     to:PropTypes.string,
 }

@@ -1,4 +1,5 @@
 import * as Scroll from 'react-scroll';
+import PropTypes from 'prop-types';
 import { List, Item, Name, Image } from "./Actors.styled";
 import { NoFetchResults } from "components/NoFetchResults/NoFetchResults";
 import image from "../../Images/noPoster.jpg"
@@ -17,8 +18,11 @@ export const Actors = ({ cast}) => {
                     </Item >)}
                 </List >)
         }
-        </>
-
-  
+        </>  
     )
+}
+Actors.propTypes = {
+    cast: PropTypes.shape({
+    cast: PropTypes.array.isRequired,
+  })
 }

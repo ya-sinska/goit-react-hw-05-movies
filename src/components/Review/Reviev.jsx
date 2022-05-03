@@ -1,4 +1,5 @@
-import { List, Item,Autor, Icon} from "./Reviev.styled"
+import PropTypes from 'prop-types';
+import { List, Item, Autor, Icon } from "./Reviev.styled"
 import * as Scroll from 'react-scroll';
 import { NoFetchResults } from "components/NoFetchResults/NoFetchResults";
 export const Review = ({ reviews }) => {
@@ -15,4 +16,8 @@ export const Review = ({ reviews }) => {
     </List>)}
     </>
     )
+}
+
+Review.propTypes = {
+    reviews: PropTypes.array.isRequired,
 }

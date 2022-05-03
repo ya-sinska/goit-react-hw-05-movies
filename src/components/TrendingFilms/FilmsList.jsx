@@ -1,5 +1,5 @@
-
-import { Container,List, Title, Poster, Item, Links, MoviesTitle } from "./FilmsList.styled";
+import PropTypes from 'prop-types';
+import { Container, List, Title, Poster, Item, Links, MoviesTitle } from "./FilmsList.styled";
 import image from "../../Images/noPoster.jpg"
 const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
 export const TrendingFilms = ({ movies, title, location, to }) => {
@@ -19,4 +19,11 @@ export const TrendingFilms = ({ movies, title, location, to }) => {
             </List>       
         </Container >
     )
+}
+
+TrendingFilms.propTypes = {
+    movies: PropTypes.array.isRequired,
+    title: PropTypes.string,
+    location:PropTypes.string.isRequired,
+    to:PropTypes.string,
 }

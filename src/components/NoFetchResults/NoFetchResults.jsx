@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Notification } from "./NoTetchResults.styled"
 export const NoFetchResults = ({ text }) => {
     return (
@@ -5,4 +6,7 @@ export const NoFetchResults = ({ text }) => {
             {text}
         </Notification>
     )
+}
+NoFetchResults.propTypes = {
+    text: PropTypes.string,
 }

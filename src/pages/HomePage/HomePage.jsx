@@ -4,8 +4,7 @@ import { useFetchMovies } from "hooks/useFetchMovies";
 import { Loader } from "components/Loader/Loader";
 import { NoFetchResults } from "components/NoFetchResults/NoFetchResults";
 export const HomePage = () => {
-    const { movies } = useFetchMovies();
-    const { status } = useFetchMovies();
+    const { movies, status } = useFetchMovies();
     const location = useLocation();
    
     return (<>

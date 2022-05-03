@@ -1,4 +1,5 @@
-import { FilmContainer,GoBack,Btn, FilmDescription, Poster, Title,SubTitle, Text,GenresList} from "./Movie.styled";
+import PropTypes from 'prop-types';
+import { FilmContainer, GoBack, Btn, FilmDescription, Poster, Title, SubTitle, Text, GenresList } from "./Movie.styled";
 import image from "../../Images/noPoster.jpg"
 
 const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
@@ -21,4 +22,15 @@ export const Movie = ({ movie, onBackClick }) => {
             </FilmContainer >
         </div>
     )
+}
+
+Movie.propTypes = {
+    movie: PropTypes.shape({
+        title: PropTypes.string,
+        poster_path: PropTypes.string,
+        genres: PropTypes.array,
+        overview: PropTypes.string,
+        vote_average: PropTypes.number,
+    }).isRequired,
+    onBackClick:PropTypes.func.isRequired,
 }

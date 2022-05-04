@@ -8,7 +8,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AdittionalInfo } from "components/AdittionalInfo/AdittionalInfo";
 export default function MovieDetailsPage () {
     const [btnLabel, setBtnLabel] = useState("");
-    const {movieId} =useParams()
+    const { slug } = useParams();
+    const movieId = slug.match(/[a-z0-9]+$/)[0];
     const { movie, status } = useFetchMovie(movieId);
     const location = useLocation();
     const navigate = useNavigate();

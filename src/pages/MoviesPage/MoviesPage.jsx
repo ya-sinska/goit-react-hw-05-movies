@@ -6,7 +6,8 @@ import { Loader } from "components/Loader/Loader";
 import { NoFetchResults } from "components/NoFetchResults/NoFetchResults";
 export default function MoviesPage () {
     const { movies, status, onInputChange} = useFetchMoviesByQuery();
-    const { movieId } = useParams();
+    const { slug } = useParams();
+    const movieId = slug&&slug.match(/[a-z0-9]+$/)[0];
     const location = useLocation();
     return (
         <>

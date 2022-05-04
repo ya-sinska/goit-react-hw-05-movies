@@ -8,8 +8,7 @@ const HomePage = lazy(() => import('pages/HomePage/HomePage' /* webpackChunkName
 const Layout  = lazy(() => import('./Layout/Layout' /* webpackChunkName: "Layout"*/));
 const MoviesPage = lazy(() => import('pages/MoviesPage/MoviesPage' /* webpackChunkName: "MoviesPage"*/));
 const MovieDetailsPage = lazy(() => import('pages/MovieDetailsPage/MovieDetailsPage' /* webpackChunkName: "MovieDetailsPage"*/));
-const Cast = lazy(() => import('pages/Cast/Cast' /* webpackChunkName: "Cast"*/));
-const Reviews = lazy(() => import('pages/Reviews/Reviews' /* webpackChunkName: "Reviews"*/));
+
 export const App = () => {
   return (
     <>
@@ -19,18 +18,13 @@ export const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage/>} />
             <Route path="movies" element={<MoviesPage />}>
-              <Route path=':slug' element={<MovieDetailsPage />}>
-                <Route path='cast' element={<Cast/>} />
-                <Route path='reviews' element={<Reviews />} />
-              </Route>
+              <Route path=':slug/*' element={<MovieDetailsPage />}/>
             </Route>
-            <Route path="*" element={<NoFetchResults/> }/>
+            <Route path="*" element={<NoFetchResults text={ "Sorry, there is no page here"}/>}/>
           </Route>
         </Routes>
       </Suspense>
 
     </>
-
-   
   );
 };

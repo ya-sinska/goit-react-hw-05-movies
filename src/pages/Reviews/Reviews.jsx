@@ -2,7 +2,8 @@ import { useParams } from "react-router-dom";
 import { useFetchReviews } from "hooks/useFetchReviews";
 import { Review } from "components/Review/Reviev";
 export default function Reviews () {
-    const { movieId } = useParams();
+    const { slug } = useParams();
+    const movieId = slug.match(/[a-z0-9]+$/)[0];
     const reviews = useFetchReviews(movieId);
    
     return (

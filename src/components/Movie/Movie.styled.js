@@ -1,13 +1,30 @@
 import styled from "@emotion/styled";
 import { MdKeyboardReturn } from 'react-icons/md';
 export const Btn = styled.button`
-border: none;
 background-color: transparent;
 cursor: pointer;
+font-size:14px;
+font-family: 'Work Sans', sans-serif;
+font-weight:400;
+color: #fc7b03;
+display:flex;
+flex-direction:column-reverse;
+align-items:center;
+padding:3px;
+margin-bottom:15px;
+border: 2px solid #fc7b03;
+box-shadow: 0px 0px 17px 0px rgba(255,124,36,0.66);
+border-radius: 4px;
+&:hover,:focus{
+    box-shadow: 0px 0px 17px 0px rgba(255,185,43,0.66);
+    background-color: #fff9e8;
+    border: 2px solid #fcba03;
+}
+
 `
 export const GoBack = styled(MdKeyboardReturn)`
-width: 60px;
-height: 30px;
+width: 30px;
+height: 20px;
 color: #fc7b03;
 `
 export const FilmContainer = styled.div`

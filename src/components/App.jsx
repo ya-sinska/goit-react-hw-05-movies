@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Loader } from './Loader/Loader';
+import { NoFetchResults } from './NoFetchResults/NoFetchResults';
 const HomePage = lazy(() => import('pages/HomePage/HomePage' /* webpackChunkName: "HomePage"*/));
 const Layout  = lazy(() => import('./Layout/Layout' /* webpackChunkName: "Layout"*/));
 const MoviesPage = lazy(() => import('pages/MoviesPage/MoviesPage' /* webpackChunkName: "MoviesPage"*/));
@@ -23,6 +24,7 @@ export const App = () => {
                 <Route path='reviews' element={<Reviews />} />
               </Route>
             </Route>
+            <Route path="*" element={<NoFetchResults/> }/>
           </Route>
         </Routes>
       </Suspense>

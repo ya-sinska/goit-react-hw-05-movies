@@ -7,17 +7,18 @@ import { Movie } from "components/Movie/Movie";
 import { useParams, useNavigate } from "react-router-dom";
 import { AdittionalInfo } from "components/AdittionalInfo/AdittionalInfo";
 export default function MovieDetailsPage () {
-    const [movieLocation, setMovieLocation] = useState({});
+    const [btnLabel, setBtnLabel] = useState("");
     const {movieId} =useParams()
     const { movie, status } = useFetchMovie(movieId);
     const location = useLocation();
     const navigate = useNavigate();
-    
     const onBackHandle = () => {
-    navigate(movieLocation)
+        location?.state?.from?.location?navigate(location.state.from.location):navigate('/')
     }
     useEffect(() => {
-    if(location.state) setMovieLocation(location.state.from)
+        if (location.state?.from?.label) {
+            setBtnLabel(location.state.from.label)
+        }
     }, [location.state])
 
     return (
@@ -25,7 +26,7 @@ export default function MovieDetailsPage () {
         {status === 'pending' && <Loader />}
             {status === 'resolved' &&
                 <>
-                <Movie movie={movie} location={location} onBackClick={onBackHandle }/>
+                <Movie movie={movie} label={btnLabel} onBackClick={onBackHandle }/>
                 <AdittionalInfo/>
                 </>}
         {status === 'rejected' && <h2>Sorry can't find this page</h2>}

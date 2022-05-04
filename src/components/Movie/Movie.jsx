@@ -4,11 +4,11 @@ import image from "../../Images/noPoster.jpg"
 
 const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
 
-export const Movie = ({ movie, onBackClick }) => {
+export const Movie = ({ movie,label, onBackClick }) => {
     const { title, poster_path, genres, overview, vote_average} = movie;
     return (
         <div>
-            <Btn type='button'onClick={onBackClick} ><GoBack  /></Btn>
+            <Btn type='button' onClick={onBackClick} >{label? label:"Go Back"}<GoBack  /></Btn>
             <FilmContainer >
                {poster_path? (<Poster  src={`${imgBaseUrl}${poster_path}`} alt={title} />):(<Poster src={`${image}`} alt='no poster'/>) }
                     <FilmDescription>

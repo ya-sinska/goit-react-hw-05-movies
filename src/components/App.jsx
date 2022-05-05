@@ -20,8 +20,8 @@ export const App = () => {
             <Route path="movies" element={<MoviesPage />}>
               <Route path=':slug/*' element={<MovieDetailsPage />}/>
             </Route>
-            <Route path="*" element={<NoFetchResults text={ "Sorry, there is no page here"}/>}/>
           </Route>
+          <Route path="*" element={<NoFetchResults text={ "Sorry, there is no page here"}/>}/>
         </Routes>
       </Suspense>
 

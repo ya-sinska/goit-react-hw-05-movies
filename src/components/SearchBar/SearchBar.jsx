@@ -8,7 +8,7 @@ const initialValues = {
 };
 export const Searchbar = ({onSubmit}) => {
     const handleSubmit = (values, { resetForm }) => {
-        onSubmit(values.name)
+        onSubmit(values.name.toLowerCase().trim())
         resetForm();
     
   };

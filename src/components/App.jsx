@@ -4,12 +4,14 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Loader } from './Loader/Loader';
 import { NoFetchResults } from './NoFetchResults/NoFetchResults';
+
 const HomePage = lazy(() => import('pages/HomePage/HomePage' /* webpackChunkName: "HomePage"*/));
 const Layout  = lazy(() => import('./Layout/Layout' /* webpackChunkName: "Layout"*/));
 const MoviesPage = lazy(() => import('pages/MoviesPage/MoviesPage' /* webpackChunkName: "MoviesPage"*/));
 const MovieDetailsPage = lazy(() => import('pages/MovieDetailsPage/MovieDetailsPage' /* webpackChunkName: "MovieDetailsPage"*/));
 
 export const App = () => {
+
   return (
     <>
       <ToastContainer />
@@ -21,7 +23,7 @@ export const App = () => {
               <Route path=':slug/*' element={<MovieDetailsPage />}/>
             </Route>
           </Route>
-          <Route path="*" element={<NoFetchResults text={ "Sorry, there is no page here"}/>}/>
+          <Route path="*" element={<NoFetchResults text={"Sorry, there is no page here"} showBtn={true} />} />
         </Routes>
       </Suspense>
 

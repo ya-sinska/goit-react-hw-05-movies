@@ -37,6 +37,7 @@ box-shadow: 0px 0px 17px 0px rgba(255,185,43,0.66);
 width: 85vw;
 `
 export const Poster = styled.img`
+cursor: pointer;
 width: 18vw;
 box-shadow: 0px 0px 17px 0px rgba(255,185,43,0.66);
 `

@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types';
 import { FilmContainer, GoBack, Btn, FilmDescription, Poster, Title, SubTitle, Text, GenresList } from "./Movie.styled";
 import image from "../../Images/noPoster.jpg"
-
+import { useState } from 'react';
+import { Modal } from 'components/Modal/Modal';
 const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
 
-export const Movie = ({ movie,label, onBackClick }) => {
-    const { title, poster_path, genres, overview, vote_average} = movie;
+export const Movie = ({ movie, label, onBackClick }) => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = (data) => {
+    setModalOpen(prevState => !prevState);
+    } 
+    const { title, poster_path, genres, overview, vote_average, id} = movie;
     return (
         <div>
             <Btn type='button' onClick={onBackClick} >{label? label:"Go Back"}<GoBack  /></Btn>
             <FilmContainer >
-               {poster_path? (<Poster  src={`${imgBaseUrl}${poster_path}`} alt={title} />):(<Poster src={`${image}`} alt='no poster'/>) }
+               {poster_path? (<Poster onClick={openModal} src={`${imgBaseUrl}${poster_path}`} alt={title} />):(<Poster src={`${image}`} alt='no poster'/>) }
                     <FilmDescription>
                         <Title>{title}</Title>
                         <Text>User score: <b>{vote_average}</b></Text>
@@ -20,6 +25,7 @@ export const Movie = ({ movie,label, onBackClick }) => {
                     {genres ? (genres.map(genre => <GenresList key={genre.id}>{genre.name}</GenresList>)) : (<Text>No genre</Text>)}
                     </FilmDescription>
             </FilmContainer >
+            <Modal onClose={openModal} isModalOpen={modalOpen} id={id}/>
         </div>
     )
 }

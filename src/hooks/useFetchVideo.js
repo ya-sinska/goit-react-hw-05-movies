@@ -7,16 +7,16 @@ const Status = {
   REJECTED: 'rejected',
 };
 export const useFetchVideo = (id) => {
-    const [movie, setMovie] = useState([])
+    const [video, setMovie] = useState([])
     const [status, setStatus] = useState('');
     useEffect(() => {
         setStatus(Status.PENDING);
         async function fetch() {
             try {
-                const movie = await fetchVideo(id);
-                setMovie(movie);
+                const video = await fetchVideo(id);
+                setMovie(video);
                 setStatus(Status.RESOLVED);
-                if(movie.length===0) return setStatus(Status.REJECTED);
+                if(video.length===0) return setStatus(Status.REJECTED);
             }
             catch (error) {
                 setStatus(Status.REJECTED);
@@ -26,5 +26,5 @@ export const useFetchVideo = (id) => {
         fetch();
     }, [id]);
 
-    return { movie, status };
+    return { video, status };
 };

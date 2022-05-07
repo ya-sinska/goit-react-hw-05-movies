@@ -22,6 +22,18 @@ border-radius: 4px;
 }
 
 `
+export const Container = styled.div`
+position:relative;
+`
+export const YouTybeImg = styled.img`
+position: absolute;
+top:50%;
+right: 50%;
+transform:translate(50%, -50%);
+cursor: pointer;
+width: 90px;
+height: auto;
+`
 export const GoBack = styled(MdKeyboardReturn)`
 width: 30px;
 height: 20px;

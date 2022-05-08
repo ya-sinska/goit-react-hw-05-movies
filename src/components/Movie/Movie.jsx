@@ -2,22 +2,39 @@ import PropTypes from 'prop-types';
 import { FilmContainer, GoBack, Btn, FilmDescription, Poster, Title, SubTitle, Text, GenresList, YouTybeImg, Container } from "./Movie.styled";
 import image from "../../Images/noPoster.jpg"
 import youTube from "../../Images/yout.png"
-import { useState } from 'react';
+import { useState, createRef, useEffect} from 'react';
 import { useFetchVideo } from 'hooks/useFetchVideo';
 import { Modal } from 'components/Modal/Modal';
+
 const imgBaseUrl = 'https://image.tmdb.org/t/p/w300';
 
 export const Movie = ({ movie, label, onBackClick }) => {
     const [modalOpen, setModalOpen] = useState(false);
     const { video, status } = useFetchVideo(movie.id);
-
-    const openModal = (data) => {
+    const ref = createRef();
+    
+     const openModal = (data) => {
     setModalOpen(prevState => !prevState);
     } 
+    
+    useEffect(() => {
+        if (ref.current) {
+        document.body.style.top = `-${window.scrollY}px`
+        document.body.style.position = 'fixed' 
+        } 
+        return () => {
+        const scrollY = document.body.style.top
+        document.body.style.position = ''
+        document.body.style.top = ''
+        window.scrollTo(0, parseInt(scrollY || '0') * -1)
+  }
+    },[ref])
+    
+   
 
     const { title, poster_path, genres, overview, vote_average} = movie;
     return (
-        <div>
+        <div >
             <Btn type='button' onClick={onBackClick} >{label? label:"Go Back"}<GoBack  /></Btn>
             <FilmContainer >
                 <Container onClick={openModal}>
@@ -34,7 +51,8 @@ export const Movie = ({ movie, label, onBackClick }) => {
                     {genres ? (genres.map(genre => <GenresList key={genre.id}>{genre.name}</GenresList>)) : (<Text>No genre</Text>)}
                     </FilmDescription>
             </FilmContainer >
-            <Modal onClose={openModal} isModalOpen={modalOpen} trailer={video} status={ status}/>
+           
+            <Modal ref={ref} onClose={openModal} isModalOpen={modalOpen} trailer={video} status={ status}/>    
         </div>
     )
 }
